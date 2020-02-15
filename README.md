@@ -2,10 +2,9 @@
 
 This GitHub Action offers you a direct way to interact with the host system on which the actual scripts (Actions) will run.
 
-## Supported Operating Systems
+## Supported Container OS
 
-- `Linux`
-- `macOS`
+- `Alpine` running on `linux`
 
 ## Getting Started
 
@@ -17,10 +16,12 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: alpine:latest
     steps:
     - uses: actions/checkout@v1
     - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v1
+      uses: cmosh/action-tmate@v1
 ```
 
 To get the connection string, just open the `Checks` tab in your Pull Request and scroll to the bottom. There you can connect either directly per SSH or via a web based terminal.

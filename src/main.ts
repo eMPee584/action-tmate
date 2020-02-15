@@ -29,12 +29,7 @@ function execShellCommand(cmd: string): Promise<string> {
 async function run() {
   try {
     core.debug("Installing dependencies")
-    if (process.platform === 'darwin') {
-      await execShellCommand('brew install tmate');
-    } else {
-      await execShellCommand('sudo apt-get update');
-      await execShellCommand('sudo apt-get install -y tmate openssh-client');
-    }
+    await execShellCommand('apk add --no-cache tmate openssh-client');
     core.debug("Installed dependencies successfully");
     try {
       await execShellCommand(`echo -e 'y\n'|ssh-keygen -q -t rsa -N "" -f ~/.ssh/id_rsa`);
