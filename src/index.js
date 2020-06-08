@@ -18,7 +18,9 @@ export async function run() {
       await execShellCommand('brew install tmate');
     } else {
       await execShellCommand('sudo apt-get update');
-      await execShellCommand('sudo apt-get install -y tmate openssh-client');
+      await execShellCommand('sudo apt-get install -y openssh-client curl');
+      await execShellCommand('curl -L https://github.com/tmate-io/tmate/releases/download/2.4.0/tmate-2.4.0-static-linux-amd64.tar.xz|tar xJv');
+      await execShellCommand('sudo mv -v tmate-2.4.0-static-linux-amd64/tmate /usr/bin/');
     }
     core.debug("Installed dependencies successfully");
 
